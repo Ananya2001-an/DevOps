@@ -70,18 +70,18 @@ Example➖
 ```yaml
 version:'3'
 services:
-	mongodb:
-		image:mongo
-		ports:
-			-27017:27017
-		environment:
-			-MONGO..._USERNAME=admin
-	mongo-express:
-		image:mongo-express
-		ports:
-			-8080:8080
-		environment:
-			-ME_CONFIG_MONGODB_A...
+ mongodb:
+  image:mongo
+  ports:
+   -27017:27017
+  environment:
+   -MONGO..._USERNAME=admin
+ mongo-express:
+   image:mongo-express
+   ports:
+    -8080:8080
+   environment:
+    -ME_CONFIG_MONGODB_A...
 ```
 
 - **docker-compose -f (config.yaml) up** → runs all containers inside the file and creates a default network for them automatically
@@ -100,7 +100,7 @@ Example➖
 FROM node
 
 ENV MONGO_DB_USERNAME=admin
-		MONGO_DB_PWD=password
+    MONGO_DB_PWD=password
 
 RUN mkdir -p/home/app
 
@@ -134,22 +134,22 @@ So the node app can access mongo without port no.
 ```yaml
 version:'3'
 services:
-	my-app:
-		image:private-repo-name/image-name:tag
-		ports:
-			-3000:3000
-	mongodb:
-		image:mongo
-		ports:
-			-27017:27017
-		environment:
-			-MONGO..._USERNAME=admin
-	mongo-express:
-		image:mongo-express
-		ports:
-			-8080:8080
-		environment:
-			-ME_CONFIG_MONGODB_A...
+ my-app:
+  image:private-repo-name/image-name:tag
+   ports:
+    -3000:3000
+   mongodb:
+    image:mongo
+    ports:
+     -27017:27017
+    environment:
+     -MONGO..._USERNAME=admin
+   mongo-express:
+    image:mongo-express
+    ports:
+     -8080:8080
+    environment:
+     -ME_CONFIG_MONGODB_A...
 ```
 
 So building an image and pushing to repository is something that a CI tool like Jenkins will do. 
@@ -165,19 +165,19 @@ Used for data persistence. We can replicate data stored in container inside our 
 ```yaml
 version:'3'
 services:
-	my-app:
-		....
-	mongodb:
-		image:mongo
-		ports:
-			-27017:27017
-		environment:
-			-MONGO..._USERNAME=admin
-		volumes:
-			- mongo-data:/data/db
-	mongo-express:
-		....
+ my-app:
+  ....
+ mongodb:
+  image:mongo
+  ports:
+   -27017:27017
+  environment:
+   -MONGO..._USERNAME=admin
+  volumes:
+   - mongo-data:/data/db
+ mongo-express:
+  ....
 volumes:
-	mongo-data:
-		driver:local
+ mongo-data:
+  driver:local
 ```
