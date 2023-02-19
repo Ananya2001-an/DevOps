@@ -133,24 +133,24 @@ It has 3 main parts;
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-	name: nginx-deployment
-	labels:
-		app: nginx
+ name: nginx-deployment
+ labels:
+  app: nginx
 spec:
-	replicas: 2
-	selector:
-		matchLabels:
-			app: nginx
-	template:
-		metadata:
-			labels:
-				app: nginx
-		spec:
-			containers:
-			- name: nginx
-				image: nginx:1.16
-				ports:
-				- containerPort: 8080
+ replicas: 2
+ selector:
+  matchLabels:
+   app: nginx
+ template:
+  metadata:
+   labels:
+    app: nginx
+   spec:
+    containers:
+     - name: nginx
+     image: nginx:1.16
+     ports:
+     - containerPort: 8080
 ```
 
 Using labels and selectors we connect components like deployments to pods and services to deployments. Like in pod spec we can see label as a key-value pair(app: nginx) and in deployment spec we have selector with the same  key-value pair. This is done so that deployments know that which pods are under the same deployment. Also below given service config Yaml file has a spec with selector which defines that it should connect to which deployment and its pods.
@@ -159,14 +159,14 @@ Using labels and selectors we connect components like deployments to pods and se
 apiVersion: v1
 kind: Service
 metadata:
-	name: nginx-service
+ name: nginx-service
 spec: 
-	selector:
-		app: nginx
-	ports:
-		- protocol: TCP
-			port: 80
-			targetPort: 8080
+ selector:
+  app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
 ```
 
 If another service tries to connect with this service it will connect through port 80 and then the current service will direct this request to the target port 8080 where our container is listening as defined by the deployment config file.
