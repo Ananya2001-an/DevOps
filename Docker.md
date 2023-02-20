@@ -136,20 +136,20 @@ version:'3'
 services:
  my-app:
   image:private-repo-name/image-name:tag
-   ports:
-    -3000:3000
-   mongodb:
-    image:mongo
-    ports:
-     -27017:27017
-    environment:
-     -MONGO..._USERNAME=admin
-   mongo-express:
-    image:mongo-express
-    ports:
-     -8080:8080
-    environment:
-     -ME_CONFIG_MONGODB_A...
+  ports:
+   -3000:3000
+ mongodb:
+  image:mongo
+  ports:
+   -27017:27017
+  environment:
+   -MONGO..._USERNAME=admin
+ mongo-express:
+  image:mongo-express
+  ports:
+   -8080:8080
+  environment:
+   -ME_CONFIG_MONGODB_A...
 ```
 
 So building an image and pushing to repository is something that a CI tool like Jenkins will do. 
