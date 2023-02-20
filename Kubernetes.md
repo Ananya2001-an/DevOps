@@ -122,6 +122,10 @@ CLI tool for interacting with the cluster through API server running as one of t
 * **kubectl get deployment (deployment name) -o yaml** → gets current status of deployment from etcd and shows output as yaml file
 * **kubectl get all** -> gets all components inside the k8s cluster
 * **kubectl get secret** -> gets all secrets&#x20;
+* **kubectl create namespace (namespace name)** -> creates a namespace
+* **kubectl apply -f (file name) --namespace=(namespace name)** -> creates component in the given namespace
+* **kubectl get configmap** -> gets all configmaps&#x20;
+* **kubectl get configmap -n (namespace name)** -> 'get' command by default checks in the default NS so to get configmap in a different namespace we have to tell the name of that namespace as well
 
 ## YAML configuration file in K8s
 
@@ -153,9 +157,9 @@ spec:
   spec:
    containers:
     - name: nginx
-    image: nginx:1.16
-    ports:
-    - containerPort: 8080
+      image: nginx:1.16
+      ports:
+      - containerPort: 8080
 ```
 {% endcode %}
 
@@ -170,10 +174,10 @@ metadata:
 spec: 
   selector:
     app: nginx
-    ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
 ```
 {% endcode %}
 
@@ -198,12 +202,13 @@ data:
 
 For getting the base64 output for your secrets you can simply run below command in terminal:
 
-```
+```bash
 echo -n "username" | base64
 ```
 
 After the secrets file is implemented only then you can use it in your deployment file for running the pod container otherwise it will give errors. Below example shoes how to use secrets in your config file for deployment.
 
+{% code overflow="wrap" lineNumbers="true" %}
 ```yaml
 apiVersion: v1
 kind: Deployment
@@ -223,19 +228,122 @@ spec:
   spec:
    containers:
     - name: mongodb
-    image: mongo
-    ports:
-    - containerPort: 27017
-    env:
-    - name: MONGO_INITDB_ROOT_USERNAME
-      valueFrom:
-       secretKeyRef:
-        name: mongodb-secret
-        key: mongo-root-username
-    - name: MONGO_INITDB_ROOT_PASSWORD
-      valueFrom:
-       secretKeyRef:
-        name: mongodb-secret
-        key: mongo-root-password  
+      image: mongo
+      ports:
+      - containerPort: 27017
+      env:
+      - name: MONGO_INITDB_ROOT_USERNAME
+       valueFrom:
+        secretKeyRef:
+         name: mongodb-secret
+         key: mongo-root-username
+      - name: MONGO_INITDB_ROOT_PASSWORD
+       valueFrom:
+        secretKeyRef:
+         name: mongodb-secret
+         key: mongo-root-password  
+```
+{% endcode %}
+
+We can write configuration for more than 1 components in a single file by separating them by "---" like shown below.
+
+{% code overflow="wrap" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: Deployment
+...
+
+---
+apiVersion: v1
+kind: Service
+...
+```
+{% endcode %}
+
+#### Creating ConfigMap file
+
+{% code overflow="wrap" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: mongodb-configmap
+data:
+    database_url: mongodb-service //not base64 encoded, plain text format 
+```
+{% endcode %}
+
+For referencing ConfigMap data we do something similar like we did for secrets:
+
+{% code overflow="wrap" lineNumbers="true" %}
+```yaml
+ valueFrom:
+       configMapKeyRef:
+        name: mongodb-configmap
+        key: database_url
+```
+{% endcode %}
+
+#### Creating external service
+
+{% code overflow="wrap" lineNumbers="true" %}
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+ name: mongo-express-service
+spec: 
+  selector:
+    app: mongo-express
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+    nodePort: 30000 //should be between 30000 to 32767 for external access
+```
+{% endcode %}
+
+For this service we will get both internal and external service IP address but in minikube this external IP is not automatically implemented. To get it we have to run one more command:
+
+```sh
+minikube service "service name"
+```
+
+### Namespaces
+
+They have 4 main use cases:
+
+1. Structure all different components
+2. Avoid conflicts between teams (overwriting deployment made by other team because of same name can be avoided if put into different namespaces)
+3. Share services between different environments (reuse components in a particular namespace)
+4. Access and resource limits on namespace level
+
+By default there are 4 namespaces:
+
+1. kube-system -> shouldn't be created/modified. Has all kubectl process related components.
+2. kube-public -> publicly accessible data, a configMap contains cluster info which can be accessed using command "kubectl cluster-info"
+3. &#x20;kube-node-lease -> has heartbeats of nodes, each node has associated lease object in namespace, determines availability of node
+4. default -> resources we create are by default here
+
+#### Features of namespaces
+
+1. You can't access most resources from another namespace
+2. Only service is the only component that can be shared across namespaces
+3. Some components can't be namespaced like volumes and node.
+
+To get list of all components that can be namespaced write the following command:&#x20;
+
+```bash
+kubectl api-resources -namespaced=true
+```
+
+Add namespace in metadata part of config file for a component:
+
+```yaml
+...
+metadata:
+    name: ...
+    namespace: my-namespace
 ```
 
