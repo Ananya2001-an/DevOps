@@ -135,6 +135,7 @@ CLI tool for interacting with the cluster through API server running as one of t
 * **kubectl apply -f (file name) --namespace=(namespace name)** -> creates component in the given namespace
 * **kubectl get configmap** -> gets all configmaps&#x20;
 * **kubectl get configmap -n (namespace name)** -> 'get' command by default checks in the default NS so to get configmap in a different namespace we have to tell the name of that namespace as well
+* **kubectl get endpoints** -> get endpoints of all pods under a service
 
 ## YAML configuration file in K8s
 
@@ -357,3 +358,153 @@ metadata:
 ```
 
 <figure><img src=".gitbook/assets/1552CDDF-8221-4E1F-94E0-6388BB7069A4.jpeg" alt=""><figcaption><p>Namespace to group components</p></figcaption></figure>
+
+### Ingress
+
+```yaml
+apiVersion: …
+kind: Ingress
+metadata:
+    name: myapp-ingress
+spec:
+    rules:
+    - host: myapp.com
+      http:
+       paths:
+       - backend:
+          serviceName: myapp-internal-service
+          servicePort: 8080
+```
+
+When the user types the above host url into the search bar, ingress will then route the request to the internal service given by serviceName.
+
+“http” in this yaml file refers to the protocol taken when making request to the internal service not the one that’s made from browser to ingress.
+
+### Ingress controller
+
+To implement ingress we need an ingress controller. It can’t be implemented simply using the above yaml configuration given.
+
+Roles:
+
+1. Evaluates all the ingress rules
+2. manages redirections&#x20;
+3. entrypoint to the cluster
+4. many third party implementations
+
+By default K8s provides you with the “**K8s Nginx ingress controller**”
+
+Now depending on the environment on which your cluster runs we can have 2 ways to set up external request service:
+
+1. If you are using a cloud provider like AWS, Google cloud or Linode then we don’t have to implement load balancer by ourselves. There would be a cloud load balancer that will be readily available to listen to the public requests and then forward them to the ingress controller which will then evaluate the rules and handle forwarding from there.
+2. Or else you can set up a proxy server inside or outside your cluster that will listen to your requests and then forward them to ingress controller. Acts as the only entry point to the cluster as it will have a public IP address.&#x20;
+
+Below command will enable the K8s Nginx ingress controller In minikube.
+
+```bash
+minikube addons enable ingress
+```
+
+Now once you apply the above ingress yaml file you can get the IP address of ingress controller by writing command:
+
+```bash
+kubectl get ingress
+```
+
+Now save this information In the /etc/hosts file by writing the IP and host name in one line like this:&#x20;
+
+{% hint style="info" %}
+192.0.9.78(example IP)      myapp.com &#x20;
+{% endhint %}
+
+Now you can access the internal service and therefore the running pod at this host.
+
+#### Multiple paths for same host
+
+```yaml
+host: myapp.com
+…
+paths:
+ - path: /analytics
+   …
+ - path: /shopping
+   …
+```
+
+#### Multiple sub-domains or domains
+
+```yaml
+- host: ananlytics.myapp.com
+  …
+- host: shopping.myapp.com
+  …
+```
+
+#### Configure TLS certificate to make external requests through “https” protocol
+
+```yaml
+spec:
+  tls:
+  - hosts:
+    - myapp.com
+    secretName: myapp-secret-tls
+```
+
+```yaml
+apiVersion:…
+kind: Secret
+metadata:
+    name: myapp-secret-tls
+data:
+    tls.crt: base64 encoded cert
+    tls.key: base64 encoded key
+type: kubernetes.io/tls
+```
+
+### HELM package manager
+
+Packages yaml files and distributes them in public and private repositories.
+
+**Helm charts** are used to bundle Yaml files and we can easily push them to Helm repository or even download someone else’s charts for our own use.
+
+Helm chart directory:
+
+* Chart.yaml -> metadata about the chart
+* values.yaml -> values to replace in template&#x20;
+* charts -> has dependencies on other charts
+* templates -> template files
+
+HELM has 2 main benefits:
+
+1. Can be used as a templating engine for creating a single yaml file template for various micro services that are supposed to run inside our cluster and have almost similar values except few.&#x20;
+2. Can create our own chart with all yaml files for app’s components and use it in different environements directly like in development, staging and production. This reduces load of writing those configurations again and again.
+3. Release management
+
+### Volumes
+
+3 main components:
+
+1. **Persistent volumes:** used to persist data locally or remotely but we prefer remote storage due to 2 reasons: one that it’s not tied to one specific node and second that it can survive cluster crashes.
+2. **PV Claim:** K8s admin will manage all resources and K8s user will use those resources depending on the needs of the application. Now if a pod has to use any volume it will request with PV claim. Claim will try to find a volume in cluster and then allots it to the pod.
+3. **Storage class:** used to dynamically provision PV from cloud provider. Pod claims storage via PVC. PVC requests storage from SC. SC creates PV that meets the needs the claim.
+
+### StatefulSet
+
+Here replica pods are not identical. Each has a pod identity.
+
+The first replica is called the master which has both read and write access to database and rest of the replicas that are made later will only have read access to avoid data inconsistencies. Each pod has a separate storage which is kept in synchronisation with the master. Also each new replica is made from the previous pod. So in a way we are achieving here temporary storage without using persistent volumes But if all pods die then all data would be lost.
+
+Each new pod is created only if the previous one is up and running. Also while deleting these pods we start from end. Once last one is deleted only then we move to next one.
+
+Since each pod here has a sticky identity hence even if it gets replaced its identity will be same so that it has same roles as the previous pod. The name of each pod is given as:
+
+> (StatefulSet name - ordinal number) like set-0, set1, etc
+
+&#x20;Also it has a fixed individual DNS name for service. Hence on pod restart name and endpoint remains same which helps in retaining state and role of the pod.
+
+### K8s services
+
+* **ClusterIP Services**
+* **Headless services** -> clusterIP set to none so that on doing DNS lookup we can get IP addresses of all pods under that service. This is useful when we want to directly connect with a pod or pods have to connect to each other without having to use a service.
+* **NodePort services ->** not secure ****&#x20;
+* **LoadBalancer services ->** extension of nodePort service which is an extension of clusterIP service
+
