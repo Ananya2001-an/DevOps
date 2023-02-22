@@ -39,6 +39,8 @@ Now to connect from the browser to this app running on the node we need an **ext
 
 Also we don’t want to connect to a Pod that runs our database or something confidential on a public request hence for it we have an **internal service**.
 
+<figure><img src=".gitbook/assets/299DF643-9AE4-4081-97B9-EF84FF1FBB88.jpeg" alt=""><figcaption><p>Service to connect with pod containers</p></figcaption></figure>
+
 ### ConfigMap and Secret
 
 Let’s say there’s an app running inside your Pod which has access to another Pod running your database using its service. Now if by any chance that service endpoint changes then we would have to make those changes for the url in the app itself and rebuild the image and again deploy it to the repository to finally run it. This is a tedious task since the url is generally available inside the build image only.
@@ -49,6 +51,8 @@ So to avoid this we have an external config inside the node which is called **Co
 
 If database pod is restarted it will lose all its logged data and hence we need a way to persist it. So we use volumes which are either local meaning we have a replica of the pod data inside the K8s cluster on some hard drive or we have some remote storage option where the data is being stored outside the cluster maybe using some cloud service, etc. So basically K8s doesn’t manage your data instead you are the one responsible for handling it.
 
+<figure><img src=".gitbook/assets/E3CC3441-1D2C-491E-8E24-A3826D59B84B.jpeg" alt=""><figcaption><p>Using volumes to persist data</p></figcaption></figure>
+
 ### Deployment and StatefulSet
 
 If your app fails due to some unknown reason then in that case we have to create a backup such that users can still access the app. For this reason we have a replica of the pod in another node to which our service will connect since service also behaves as a **load balancer**.
@@ -58,6 +62,8 @@ This replica is maintained/created with the help of deployments. **Deployment** 
 Now what if the DB fails. In that case also we need a replica but it’s not easy to maintain it since both will have access to the persistent data being stored in our cluster we have to manage synchronisation and hence we use **StatefulSet** instead of deployments.
 
 StatefulSet for stateful apps or databases. Whereas we use Deployments for stateless apps. But since using StatefulSet is not that easy hence we prefer keeping database out of the K8s cluster so that we only have to rely on Deployments for creating the replica sets for our stateless apps.
+
+<figure><img src=".gitbook/assets/394EA496-588F-4238-92D0-01118CF5E7DE.jpeg" alt=""><figcaption><p>Replicaset created with deployment</p></figcaption></figure>
 
 ## K8s architecture
 
@@ -350,3 +356,4 @@ metadata:
     namespace: my-namespace
 ```
 
+<figure><img src=".gitbook/assets/1552CDDF-8221-4E1F-94E0-6388BB7069A4.jpeg" alt=""><figcaption><p>Namespace to group components</p></figcaption></figure>
