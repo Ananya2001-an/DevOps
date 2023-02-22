@@ -82,7 +82,10 @@ In each master node also now called as the **control plane** we observe the foll
 
 We can have more than 1 control plane in a cluster that are responsible for managing the worker nodes. Hence creating replicas of all processes in each node and having a distributed storage for etcd.
 
-**Control plane has less resources whereas worker nodes has more resources since it does the actual work of running pods.**
+**Control plane has less resources whereas worker nodes has more resources since it does the actual work of running pods.**\
+****
+
+<figure><img src=".gitbook/assets/EC733F5E-409C-41AC-ACC8-82641A75C8E9.jpeg" alt=""><figcaption><p>Cluster architecture</p></figcaption></figure>
 
 ## Minikube
 
