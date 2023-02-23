@@ -1,4 +1,4 @@
-# 🗒 README
+# ♾ DevOps
 
 This repository contains all my learnings on DevOps. I have published this repo on **GitBook** for easier access of notes. I will keep updating this repo in the future since I am still learning a lot of DevOps related stuff. I hope that this repo can help you understand DevOps a little better.&#x20;
 
