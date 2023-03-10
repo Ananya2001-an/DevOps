@@ -40,6 +40,16 @@ It covers topics like:
     </td>
     <td><img width="150px" height="150px" src="https://github.com/cncf/artwork/blob/849e9f74a0f77fa0ffc18356c6a8f6c652cea037/projects/kubernetes/icon/color/kubernetes-icon-color.png"/></td>
   </tr>
+  
+  <tr>
+     <td>
+      <ul>
+        <li><a href="gitops/README.md">GitOps</a></li>
+        <li><a href="gitops/argoCD.md">ArgoCD</a></li>
+      </ul> 
+    </td>
+    <td><img width="150px" height="150px" src="https://user-images.githubusercontent.com/55504616/224307475-669612db-ecf1-48cc-9d31-28c14b919ea2.png"/></td>
+  </tr>
 </table>
 
 Feel free to give it a star⭐ so that more people get to know about it.  Happy learning 😀&#x20;
