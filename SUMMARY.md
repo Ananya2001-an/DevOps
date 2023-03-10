@@ -8,3 +8,4 @@
   * [Kubectl commands](kubernetes/kubectl-commands.md)
   * [Configuration file in YAML](kubernetes/configuration-file-in-yaml.md)
   * [HELM](kubernetes/helm.md)
+* [📄 YAML](yaml.md)
