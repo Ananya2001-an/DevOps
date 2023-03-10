@@ -21,7 +21,7 @@ Now to connect from the browser to this app running on the node we need an **ext
 
 Also we don’t want to connect to a Pod that runs our database or something confidential on a public request hence for it we have an **internal service**.
 
-<figure><img src="../.gitbook/assets/299DF643-9AE4-4081-97B9-EF84FF1FBB88.jpeg" alt=""><figcaption><p>Service to connect with pod containers</p></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/55504616/224374110-6d90a8c4-3bc7-46c6-83df-41b98a82b48a.jpeg" alt="service"><figcaption><p>Service to connect with pod containers</p></figcaption></figure>
 
 ### ConfigMap and Secret
 
@@ -39,7 +39,7 @@ If database pod is restarted it will lose all its logged data and hence we need 
 2. **PV Claim:** K8s admin will manage all resources and K8s user will use those resources depending on the needs of the application. Now if a pod has to use any volume it will request with PV claim. Claim will try to find a volume in cluster and then allots it to the pod.
 3. **Storage class:** used to dynamically provision PV from cloud provider. Pod claims storage via PVC. PVC requests storage from SC. SC creates PV that meets the needs the claim.
 
-<figure><img src="../.gitbook/assets/E3CC3441-1D2C-491E-8E24-A3826D59B84B.jpeg" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/55504616/224374305-b6059a0d-db10-491d-843a-22157fd47e72.jpeg" alt="volumes"><figcaption><p>Using volumes</p></figcaption></figure>
 
 ### Deployment
 
@@ -47,7 +47,7 @@ If your app fails due to some unknown reason then in that case we have to create
 
 This replica is maintained/created with the help of deployments. **Deployment** is an abstraction of pods hence we can say that we don’t directly interact with pods but instead create deployments that will create pods for us. In the deployment we can specify how many replicas of the pods we need. Deployment can also be considered as a blueprint for pods.
 
-<figure><img src="../.gitbook/assets/394EA496-588F-4238-92D0-01118CF5E7DE.jpeg" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/55504616/224374658-87a3b0ae-22d1-433f-8a03-41a1b474d900.jpeg" alt="replicaset"><figcaption><p>Creating replicas with deployment</p></figcaption></figure>
 
 ### StatefulSet
 
@@ -104,4 +104,4 @@ metadata:
     namespace: my-namespace
 ```
 
-<figure><img src="../.gitbook/assets/1552CDDF-8221-4E1F-94E0-6388BB7069A4.jpeg" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/55504616/224375010-aac4298e-c45f-45c6-812b-3ce7bda99fc9.jpeg" alt="namespace"><figcaption><p>Using Namespace for grouping resources</p></figcaption></figure>

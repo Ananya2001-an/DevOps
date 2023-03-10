@@ -11,7 +11,7 @@ It’s used for writing configuration files for Docker and Kubernetes Services.
 Benefits:
 
 * Human readable
-* Strict syntax and indentation. Using tools like “ValidKube” you can validate YAML files easily.&#x20;
+* Strict syntax and indentation. Using tools like “ValidKube” you can validate YAML files easily.
 * Easily convertible to JSON or XML
 * Preferred for representing complex data
 * Parsing is easy
@@ -42,5 +42,3 @@ random: [“hello”, 100]
 
 . . . #end of YAML file
 ```
-
-&#x20;

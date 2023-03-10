@@ -23,4 +23,4 @@ We can have more than 1 control plane in a cluster that are responsible for mana
 
 **Control plane has less resources whereas worker nodes has more resources since it does the actual work of running pods.**
 
-<figure><img src="../.gitbook/assets/EC733F5E-409C-41AC-ACC8-82641A75C8E9.jpeg" alt=""><figcaption><p>cluster architecture</p></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/55504616/224373739-55874082-54f9-4d83-b6c4-b85363de459a.jpeg" alt="architecture"><figcaption><p>cluster architecture</p></figcaption></figure>
