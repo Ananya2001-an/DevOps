@@ -8,13 +8,3 @@
 
 
 
-# [1.0.0](https://github.com/Ananya2001-an/DevOps/compare/5306ebebbb6ed0f915378e5da5f396cc767b1b3f...v1.0.0) (2023-03-06)
-
-
-### Features
-
-* added screenshots for commands ([5306ebe](https://github.com/Ananya2001-an/DevOps/commit/5306ebebbb6ed0f915378e5da5f396cc767b1b3f))
-* added screenshots for docker-compose ([815e13d](https://github.com/Ananya2001-an/DevOps/commit/815e13df3da109d18e86d5119e0b71a192878649))
-
-
-
