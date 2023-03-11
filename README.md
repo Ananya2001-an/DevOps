@@ -4,11 +4,13 @@
 This repository contains all my learnings on DevOps. I will keep updating this repo in the future since I am still learning a lot of DevOps related stuff. I hope that this repo can help you understand DevOps a little better. My notes include some easy to understand figures as well so that it can help you visualize concepts in a broader sense.
 </p>
 
+<p align="center"><small>This repo takes a lot of inspiration from Pradumna Saraf's <a href="https://github.com/Pradumnasaraf/DevOps" target="_blank">DevOps</a> repo. Make sure to check it out!</small></p>
+
 ## YAML
 
 <img align="right" src="https://user-images.githubusercontent.com/55504616/224235826-5f3a9e8a-979a-4000-a149-319c0538b9c1.png" height="100" alt="yaml"> 
 
-- [Introduction](yaml.md)
+- [Introduction](yaml/README.md)
 
 <br>
 
@@ -16,7 +18,7 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 
 <img align="right" src="https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png" height="100" alt="docker"> 
 
-- [Introduction and commands](Docker.md)
+- [Introduction and commands](docker/README.md)
 
 <br>
 
@@ -26,7 +28,7 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 
 - [Introduction](kubernetes/README.md)
 - [K8s Components](kubernetes/k8s-components.md)
-- [K8s Architecture](kubernetes/K8s-architecture.md)
+- [K8s Architecture](kubernetes/k8s-architecture.md)
 - [Kubectl commands](kubernetes/kubectl-commands.md)
 - [K8s Configuration files](kubernetes/configuration-file-in-yaml.md)
 - [HELM](kubernetes/helm.md)
@@ -40,5 +42,5 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 - [ArgoCD](gitops/argoCD.md)
 
 <p align="center">
-  Feel free to give the repository a star⭐ so that more people get to know about it.  Happy learning! 😀
+  Feel free to give the repository a star⭐ so that more people get to know about it. Happy learning! 😀
 </p>
