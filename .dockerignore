@@ -1,0 +1,9 @@
+.git*
+*.md
+!README.md
+.dockerignore
+LICENSE
+Dockerfile
+releases.json
+docker-compose.dev.yml
+docker-compose.yml
