@@ -8,7 +8,7 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 
 ## YAML
 
-<img align="right" src="https://user-images.githubusercontent.com/55504616/224235826-5f3a9e8a-979a-4000-a149-319c0538b9c1.png" height="100" alt="yaml"> 
+<img align="right" src="https://im3.ezgif.com/tmp/ezgif-3-d65e5b5fcb.png" height="100" alt="yaml"> 
 
 - [Introduction](yaml/README.md)
 
