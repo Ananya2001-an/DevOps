@@ -40,7 +40,3 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 
 - [Introduction](gitops/README.md)
 - [ArgoCD](gitops/argoCD.md)
-
-<p align="center">
-  Feel free to give the repository a star⭐ so that more people get to know about it. Happy learning! 😀
-</p>
