@@ -15,14 +15,15 @@ jobs:
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3.7.1
         with:
-          github-token: ${{ secrets.PAT }}
+          github-token: ${{ secrets.PA_TOKEN }}
           version-file: './releases.json'
+          skip-on-empty: false
 
       - name: create release
         uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        if: ${{ steps.changelog.outputs.skipped == 'true' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.PA_TOKEN }}
         with:
           tag_name: ${{ steps.changelog.outputs.tag }}
           release_name: ${{ steps.changelog.outputs.tag }}
