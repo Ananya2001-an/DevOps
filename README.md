@@ -1,4 +1,4 @@
-<h1 align="center"> DevOps ♾ </h1>
+<h1 align="center"> DevOps </h1>
 
 <p align="center">
 This repository contains all my learnings on DevOps. I will keep updating this repo in the future since I am still learning a lot of DevOps related stuff. I hope that this repo can help you understand DevOps a little better. My notes include some easy to understand figures as well so that it can help you visualize concepts in a broader sense.
