@@ -21,7 +21,7 @@ jobs:
 
       - name: create release
         uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'true' }}
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
