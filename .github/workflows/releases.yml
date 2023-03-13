@@ -17,7 +17,6 @@ jobs:
         with:
           github-token: ${{ secrets.PAT }}
           version-file: './releases.json'
-          skip-on-empty: false
 
       - name: create release
         uses: actions/create-release@v1
