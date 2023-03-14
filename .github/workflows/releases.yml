@@ -1,31 +1,24 @@
-name: Releases
+name: Release
+
 on:
   push:
     branches:
       - main
-
+  
 jobs:
-  changelog:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      - name: conventional Changelog Action
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3.7.1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          github-token: ${{ secrets.PAT }}
-          version-file: './releases.json'
-
-      - name: create release
-        uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
-
-       
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
