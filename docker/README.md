@@ -77,13 +77,13 @@ services:
     -ME_CONFIG_MONGODB_A...
 ```
 
-* **docker-compose -f (config.yaml) up** → runs all containers inside the file and creates a default network for them automatically
+* **docker compose -f (config.yaml) up** → runs all containers inside the file and creates a default network for them automatically
 
-![image](https://user-images.githubusercontent.com/55504616/223135401-93dd92c3-178d-41c2-8f2b-14900e4701ab.png)
+![223135401-93dd92c3-178d-41c2-8f2b-14900e4701ab](https://user-images.githubusercontent.com/73067659/226887453-6a9ca1c3-8d78-40c5-a0e1-701b08b9764f.png)
 
-* **docker-compose -f (config.yaml) down** → stops all running containers mentioned inside the file
+* **docker compose -f (config.yaml) down** → stops all running containers mentioned inside the file
 
-![image](https://user-images.githubusercontent.com/55504616/223135921-718ab43e-a4c9-409e-adbf-f79bcca8aba9.png)
+![223135921-718ab43e-a4c9-409e-adbf-f79bcca8aba9](https://user-images.githubusercontent.com/73067659/226887728-a9980cbf-a4f9-4383-b2d7-ddf616f29896.png)
 
 
 > Logs of all containers might get mixed since starting at the same time
