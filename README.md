@@ -42,6 +42,14 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 - [HELM](kubernetes/helm.md)
 <br>
 
+## GCP (Google Cloud)
+
+<img align="right" height="100" src="https://img.icons8.com/fluency/240/google-cloud.png" alt="google-cloud"/>
+
+- [Introduction](gcloud/README.md)
+- [Cloud Engineer Learning Path](gcloud/cloud-engineer-learning-path.md)
+<br>
+
 ## GitOps
 
 <img align="right" src="https://user-images.githubusercontent.com/55504616/224307475-669612db-ecf1-48cc-9d31-28c14b919ea2.png" height="100" alt="gitops"> 
