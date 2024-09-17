@@ -49,3 +49,35 @@ Example: Cymbal superstore
     - The recommended network access would be external https access to the region for partners and internal connectivity between the application and the backing database service.
 
 ![Screenshot 2024-09-17 025357](https://github.com/user-attachments/assets/486e46dc-8d58-4f51-8bf0-4fe581e362a8)
+
+
+### imp notes
+
+![Screenshot 2024-09-17 131042](https://github.com/user-attachments/assets/9f4a9cce-b1e6-4306-8164-71214b198880)
+
+![Screenshot 2024-09-17 131057](https://github.com/user-attachments/assets/0ed92421-4356-48b1-a29e-e174169ee422)
+
+![Screenshot 2024-09-17 131224](https://github.com/user-attachments/assets/39fcb351-4ee9-45a7-9fd8-1f6c40577b76)
+
+![Screenshot 2024-09-17 131247](https://github.com/user-attachments/assets/2c58659a-84f7-443d-8c9b-67c0911664ff)
+
+![Screenshot 2024-09-17 131312](https://github.com/user-attachments/assets/cdad4eaf-f510-4a57-a7cc-7b431221094c)
+
+![Screenshot 2024-09-17 131339](https://github.com/user-attachments/assets/7bf13f4a-39d3-424a-b6cf-730a5210dbc4)
+
+![Screenshot 2024-09-17 131355](https://github.com/user-attachments/assets/257c3b78-f829-416d-a2f7-a8a223b80b10)
+
+
+## Deploying and implementing a Cloud solution
+
+![Screenshot 2024-09-17 132225](https://github.com/user-attachments/assets/74719513-e9e3-40ff-b456-524ed8f8227a)
+
+![Screenshot 2024-09-17 161806](https://github.com/user-attachments/assets/004bfb6a-b17d-496c-a24d-8115345df5e2)
+
+![Screenshot 2024-09-17 161700](https://github.com/user-attachments/assets/256ec7d3-f352-473b-bd19-6f8e180333aa)
+
+![Screenshot 2024-09-17 161636](https://github.com/user-attachments/assets/1eacf169-9edd-4fa2-8d4b-c37d2bbd8db4)
+
+![Screenshot 2024-09-17 161522](https://github.com/user-attachments/assets/3c297ec7-114d-4ccf-a6c7-e4cca39c82ee)
+
+![Screenshot 2024-09-17 161446](https://github.com/user-attachments/assets/ed99016c-ec03-4f3f-a189-9cbd6c4a3392)
