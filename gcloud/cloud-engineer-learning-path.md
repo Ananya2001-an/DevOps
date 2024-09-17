@@ -10,13 +10,13 @@ Example: Cymbal superstore
 
 - **Google Cloud Observability** provides metrics and logging services for all your services, resources, and projects in your cloud architecture.
 
-![Screenshot 2024-09-17 022454](https://gist.github.com/user-attachments/assets/7aadbe2d-15d4-496d-83d7-f4af09261f70)
+<img src="https://gist.github.com/user-attachments/assets/7aadbe2d-15d4-496d-83d7-f4af09261f70"/>
 
-![Screenshot 2024-09-17 022444](https://gist.github.com/user-attachments/assets/82f62c73-3761-4261-b361-2bed9e096230)
+<img src="https://gist.github.com/user-attachments/assets/82f62c73-3761-4261-b361-2bed9e096230/>
 
-![Screenshot 2024-09-17 022428](https://gist.github.com/user-attachments/assets/5c2fc54c-3789-4ff1-8fe0-cebf5bd245bc)
+[Screenshot 2024-09-17 022428](https://gist.github.com/user-attachments/assets/5c2fc54c-3789-4ff1-8fe0-cebf5bd245bc)
 
-![Screenshot 2024-09-17 022337](https://gist.github.com/user-attachments/assets/3f3348bb-c99c-40f8-b7b8-896e02beb137)
+[Screenshot 2024-09-17 022337](https://gist.github.com/user-attachments/assets/3f3348bb-c99c-40f8-b7b8-896e02beb137)
 
 
 ## Planning and configuring a cloud solution
