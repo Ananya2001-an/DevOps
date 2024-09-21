@@ -47,7 +47,7 @@ This repository contains all my learnings on DevOps. I will keep updating this r
 <img align="right" height="100" src="https://img.icons8.com/fluency/240/google-cloud.png" alt="google-cloud"/>
 
 - [Introduction](gcloud/README.md)
-- [Cloud Engineer Learning Path](gcloud/cloud-engineer-learning-path.md)
+- [Cloud Engineer Learning Path](gcloud/cloud-engineer-path/associate-cloud-engineer.md)
 <br>
 
 ## GitOps

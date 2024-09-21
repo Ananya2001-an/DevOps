@@ -13,6 +13,7 @@ Example: Cymbal superstore
 ![Screenshot 2024-09-17 022428](https://github.com/user-attachments/assets/8cbf985d-3bd4-4621-8660-498a5e557889)
 
 - **Google Cloud Observability** provides metrics and logging services for all your services, resources, and projects in your cloud architecture.
+
 ![Screenshot 2024-09-17 022444](https://github.com/user-attachments/assets/3a093383-fed2-4711-a800-4b6d37025646)
 
 ![Screenshot 2024-09-17 022454](https://github.com/user-attachments/assets/52784d2a-f296-4a6c-a432-666bbe561427)
@@ -81,3 +82,66 @@ Example: Cymbal superstore
 ![Screenshot 2024-09-17 161522](https://github.com/user-attachments/assets/3c297ec7-114d-4ccf-a6c7-e4cca39c82ee)
 
 ![Screenshot 2024-09-17 161446](https://github.com/user-attachments/assets/ed99016c-ec03-4f3f-a189-9cbd6c4a3392)
+
+
+## Ensuring successful operation of cloud solution
+
+To implement network load balancing you create a service object with these settings:
+-  type: LoadBalancer.
+-  Set External Traffic Policy to cluster or local
+
+Cluster - traffic will be load balanced to any healthy GKE node and then kube-proxy
+will send it to a node with the pod.
+
+Local - nodes without the pod will be reported as unhealthy. Traffic will only be sent to
+nodes with the pod. Traffic will be sent directly to pod with source ip header info
+included.
+
+To implement external http(s) load balancing create an ingress object with the
+following settings:
+- Routing depends on URL path, session affinity, and the balancing mode of
+backend Network endpoint groups (NEGS)
+- The object type is ingress.
+- Using ingress.class: “gce” annotation in the metadata deploys an
+external load balancer.
+- External load balancer is deployed at Google Point
+
+
+To implement an internal http(s) load balancer create an ingress object with the
+following settings:
+- Routing depends on URL path, session affinity, and balancing mode of the
+backend NEGS.
+- The object kind is ingress.
+- Metadata requires an Ingress.class: “gce-internal” to spawn an
+internal load balancer.
+- Proxies are deployed in a proxy only subnet in a specific region in your VPC.
+- Only NEGs are supported. Use the following annotation in your service
+metadata:
+- cloud.google.com/neg: '{"ingress": true}'
+- Forwarding rule is assigned from the GKE node address range.
+
+![Screenshot 2024-09-21 125150](https://github.com/user-attachments/assets/b658da87-23a7-488c-b35d-9b1782538418)
+
+
+How does autoscaling work in Cloud Run?
+Cloud Run automatically scales the number of container instances required for each
+deployed revision. When no traffic is received, the deployment automatically scales to
+zero.
+Other ways you can affect Cloud Run autoscaling:
+- CPU utilization, with a default 60% utilization.
+- Concurrency settings, with a default of 80 concurrent requests. You can
+increase it to 1000. You can also lower it if you need to.
+- Max number of instances limits total number of instances. It can help you
+control costs and limit connections to a backing service. Defaults to 1000.
+Quota increase required if you want more.
+- Min number of instances keeps a certain number of instances up. You will
+incur cost even when no instances are handling requests
+
+![Screenshot 2024-09-21 125423](https://github.com/user-attachments/assets/68f3487e-3a8e-405e-8ad7-f15a72f6211d)
+
+
+## Configuring Access and security
+
+- Service accounts are designed to provide permissions for machine-to machine or service-to-service communications in Google Cloud.
+
+![Screenshot 2024-09-21 131042](https://github.com/user-attachments/assets/439031c9-2cc2-404c-908c-374cb6eab85b)
